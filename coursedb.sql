@@ -1,4 +1,4 @@
- -- create database devcourse
+-- create database devcourse
 
 -- Tạo bảng Category
 CREATE TABLE Category (
@@ -25,7 +25,7 @@ CREATE TABLE Users (
     gender BIT,
     avatar_url VARCHAR(255),
     last_name VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    password VARCHAR(255),
     phone_number VARCHAR(255),
     budget BIGINT
 );
@@ -54,7 +54,7 @@ CREATE TABLE Course (
     course_id VARCHAR(255) PRIMARY KEY,
     course_des TEXT,
     course_name VARCHAR(255) NOT NULL UNIQUE,
-    duration INT NOT NULL,
+    duration DATE NOT NULL,
     image_course_url MEDIUMBLOB,
     is_active BIT,
     category_id BIGINT,
@@ -72,10 +72,19 @@ CREATE TABLE Lesson (
     lesson_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     content_link TEXT NOT NULL,
     course_id VARCHAR(255),
-    unit_score DOUBLE,
     lesson_title VARCHAR(255) NOT NULL,
     FOREIGN KEY (course_id) REFERENCES Course(course_id)
 );
+
+-- Tạo bảng Assignment_Score
+CREATE TABLE ASSIGNMENT_SCORE(
+	 user_id VARCHAR(255),
+     lesson_id BIGINT,
+     score float,
+	 PRIMARY KEY (user_id, lesson_id),
+	 FOREIGN KEY (user_id) REFERENCES Student(user_id),
+	 FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)
+)
 
 -- Tạo bảng Question
 CREATE TABLE Question (
@@ -92,11 +101,11 @@ CREATE TABLE Question (
 
 -- Tạo bảng Student_course
 CREATE TABLE Student_course (
-    student_course_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    course_score INT,
+	course_score INT, -- điểm khóa học dựa trên đánh giá của học sinh
     register_date DATE,
     course_id VARCHAR(255),
     user_id VARCHAR(255),
+	PRIMARY KEY (user_id, course_id),
     FOREIGN KEY (course_id) REFERENCES Course(course_id),
     FOREIGN KEY (user_id) REFERENCES Student(user_id)
 );
@@ -135,8 +144,7 @@ CREATE TABLE Orders (
     serial_number VARCHAR(255),
     user_id VARCHAR(255) NOT NULL,  -- Sửa kiểu dữ liệu thành VARCHAR(255)
     course_id VARCHAR(255),
-    created_at DATE,
-    received_at DATE,
+    payment_at DATE,
     total_expenses_id BIGINT,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (total_expenses_id) REFERENCES Total_Expenses(total_expenses_id)
@@ -168,7 +176,6 @@ CREATE TABLE Refresh_token (
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  
 );
-
 
 
 
