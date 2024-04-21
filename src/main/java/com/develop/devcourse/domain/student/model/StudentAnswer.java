@@ -2,6 +2,7 @@ package com.develop.devcourse.domain.student.model;
 
 import com.develop.devcourse.domain.lesson.model.Answer;
 import com.develop.devcourse.domain.lesson.model.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +25,13 @@ public class StudentAnswer {
 
     @ManyToOne
     @JoinColumn(name = "question_id")
+    @MapsId("questionId")
+    @JsonIgnore
     private Question question;
 
     @ManyToOne
-    @JoinColumn(name = "s")
+    @JoinColumn(name = "user_id")
+    @MapsId("userId")
+    @JsonIgnore
     private Student student;
 }

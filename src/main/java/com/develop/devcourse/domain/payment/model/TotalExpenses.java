@@ -26,7 +26,7 @@ public class TotalExpenses {
     @Column(name = "total_expenses")
     private Long totalExpenses;
 
-    @OneToMany(mappedBy = "total_expenses")
+    @OneToMany(mappedBy = "totalExpenses")
     @JsonIgnore
     private List<Orders> ordersList;
 

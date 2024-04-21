@@ -1,14 +1,13 @@
 package com.develop.devcourse.domain.security.dto.request;
 
 
-import com.develop.devcourse.domain.security.validator.ExistEmail;
-import com.develop.devcourse.domain.security.validator.PasswordMatching;
-import com.develop.devcourse.domain.security.validator.StrongPassword;
-import com.develop.devcourse.domain.security.validator.ValidEmail;
+import com.develop.devcourse.domain.security.validator.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -31,6 +30,11 @@ public class SignupRequest {
     @NotBlank(message = "Please enter Email")
     private String email;
 
+    @ValidPhone
+    @NotBlank(message = "Please enter phone number")
+    private String phoneNumber;
+
+    private Date birthDate;
 
     @StrongPassword
     @NotBlank(message = "Please enter password")
@@ -38,4 +42,5 @@ public class SignupRequest {
 
     @NotBlank(message = "Please enter confirm password")
     private String confirmPassword;
+
 }

@@ -45,6 +45,6 @@ public class Question {
     @JoinColumn(name = "lesson_id", referencedColumnName = "lesson_id")
     private Lesson lesson;
 
-    @OneToMany(mappedBy = "quesion")
+    @OneToMany(mappedBy = "question")
     private List<StudentAnswer> studentAnswers;
 }

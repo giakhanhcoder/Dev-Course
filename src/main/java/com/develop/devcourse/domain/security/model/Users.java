@@ -1,7 +1,9 @@
 package com.develop.devcourse.domain.security.model;
 
+import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.develop.devcourse.domain.payment.model.Orders;
 import com.develop.devcourse.domain.payment.model.TotalExpenses;
+import com.develop.devcourse.domain.student.model.Student;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,7 +36,7 @@ public class Users {
     private Date birthday;
 
     @Column(name = "create_At")
-    private Date creatAt;
+    private Date createAt;
 
     @Column(name = "email")
     private String email;
@@ -75,6 +77,15 @@ public class Users {
     @OneToMany(mappedBy = "users")
     @JsonIgnore
     private List<Orders> ordersList;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Mentor mentor;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Student student;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private RefreshToken refreshToken;
 
     @Transient
     private String fullName;

@@ -60,7 +60,7 @@ public class Course {
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @JsonIgnoreProperties({"degree","experience"})
     private Mentor mentor;
 

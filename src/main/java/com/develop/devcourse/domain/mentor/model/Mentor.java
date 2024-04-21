@@ -20,7 +20,7 @@ public class Mentor {
 
     @Id
     @Column(name = "user_id")
-    private String userId;
+    private String mentorId;
 
     @Column(name = "degree")
     private String degree;
@@ -32,6 +32,7 @@ public class Mentor {
     @JoinColumn(name = "user_id")
     @MapsId
     private Users user;
+
 
     @OneToMany(mappedBy = "mentor")
     private List<Course> course;

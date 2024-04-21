@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.student.model;
 
 import com.develop.devcourse.domain.course.model.Course;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,10 +28,14 @@ public class StudentCourse {
     private Date registerDate;
 
     @ManyToOne
+    @MapsId("courseId")
     @JoinColumn(name = "course_id")
+    @JsonIgnore
     private Course course;
 
     @ManyToOne
+    @MapsId("userId")
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private Student student;
 }

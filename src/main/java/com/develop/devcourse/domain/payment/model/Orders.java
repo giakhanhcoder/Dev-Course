@@ -24,7 +24,7 @@ public class Orders {
     private String orderId;
 
     @Column(name = "serial_number")
-    @GeneratedValue(strategy = GenerationType.UUID)
+//    @GeneratedValue(strategy = GenerationType.UUID)
     private String serialNumber;
 
     @Column(name = "payment_at")
