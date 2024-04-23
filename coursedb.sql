@@ -1,4 +1,4 @@
--- create database devcourse
+ -- create database devcourse;
 
 -- Tạo bảng Category
 CREATE TABLE Category (
@@ -10,7 +10,7 @@ CREATE TABLE Category (
 -- Tạo bảng Role
 CREATE TABLE Role (
     role_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    role_name ENUM('ADMIN', 'MENTOR', 'STUDENT')
+    role_name ENUM('ROLE_ADMIN', 'ROLE_MENTOR', 'ROLE_STUDENT')
 );
 
 -- Tạo bảng User
@@ -84,7 +84,7 @@ CREATE TABLE ASSIGNMENT_SCORE(
 	 PRIMARY KEY (user_id, lesson_id),
 	 FOREIGN KEY (user_id) REFERENCES Student(user_id),
 	 FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)
-)
+);
 
 -- Tạo bảng Question
 CREATE TABLE Question (
@@ -176,6 +176,11 @@ CREATE TABLE Refresh_token (
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  
 );
+
+
+INSERT INTO Role (role_name) VALUES ('ROLE_ADMIN');
+INSERT INTO Role (role_name) VALUES ('ROLE_MENTOR');
+INSERT INTO Role (role_name) VALUES ('ROLE_STUDENT');
 
 
 

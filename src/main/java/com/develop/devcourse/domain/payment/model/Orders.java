@@ -21,7 +21,7 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private String orderId;
+    private Long orderId;
 
     @Column(name = "serial_number")
 //    @GeneratedValue(strategy = GenerationType.UUID)
