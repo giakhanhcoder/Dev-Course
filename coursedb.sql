@@ -17,8 +17,8 @@ CREATE TABLE Role (
 CREATE TABLE Users (
     user_id VARCHAR(255) PRIMARY KEY,
     address VARCHAR(255),
-    birthday DATE,
-    create_at DATE,
+    birthday DATETIME(6),
+    create_at DATETIME(6),
     email VARCHAR(255) NOT NULL UNIQUE,
     is_active BIT,
     first_name VARCHAR(255) NOT NULL,
@@ -54,17 +54,17 @@ CREATE TABLE Course (
     course_id VARCHAR(255) PRIMARY KEY,
     course_des TEXT,
     course_name VARCHAR(255) NOT NULL UNIQUE,
-    duration DATE NOT NULL,
-    image_course_url MEDIUMBLOB,
+    duration DATETIME(6) NOT NULL,
+    image_course_url VARCHAR(255),
     is_active BIT,
     category_id BIGINT,
     course_title TEXT,
     course_price BIGINT,
     course_rate INT,
     course_feedback VARCHAR(255),
-    mentor_id VARCHAR(255),  -- Thêm cột mentor_id
+    user_id VARCHAR(255),  -- Thêm cột mentor_id
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
-    FOREIGN KEY (mentor_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
+    FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
 );
 
 -- Tạo bảng Lesson
@@ -102,7 +102,7 @@ CREATE TABLE Question (
 -- Tạo bảng Student_course
 CREATE TABLE Student_course (
 	course_score INT, -- điểm khóa học dựa trên đánh giá của học sinh
-    register_date DATE,
+    register_date DATETIME(6),
     course_id VARCHAR(255),
     user_id VARCHAR(255),
 	PRIMARY KEY (user_id, course_id),
@@ -144,7 +144,7 @@ CREATE TABLE Orders (
     serial_number VARCHAR(255),
     user_id VARCHAR(255) NOT NULL,  -- Sửa kiểu dữ liệu thành VARCHAR(255)
     course_id VARCHAR(255),
-    payment_at DATE,
+    payment_at DATETIME(6),
     total_expenses_id BIGINT,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     FOREIGN KEY (total_expenses_id) REFERENCES Total_Expenses(total_expenses_id)
@@ -171,7 +171,7 @@ CREATE TABLE Comment (
 -- Tạo bảng Refesh_token
 CREATE TABLE Refresh_token (
     user_id VARCHAR(255),
-    expiry_date DATE,
+    expiry_date DATETIME(6),
     token VARCHAR(255) NOT NULL UNIQUE,
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  

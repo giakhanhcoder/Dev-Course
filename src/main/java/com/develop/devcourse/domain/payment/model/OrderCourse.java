@@ -1,9 +1,9 @@
 package com.develop.devcourse.domain.payment.model;
 
 
-import com.develop.devcourse.domain.course.model.Course;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +20,15 @@ public class OrderCourse {
     @EmbeddedId
     private OrderCourseId orderCourseId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("orderId")
-    @JsonIgnore
-    private Orders orders;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("courseId")
-    @JsonIgnore
-    private Course course;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("orderId")
+//    @JoinColumn(name = "order_id")
+//    @JsonIgnore
+//    private Orders orders;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @MapsId("courseId")
+//    @JoinColumn(name = "course_id")
+//    @JsonIgnore
+//    private Course course;
 }

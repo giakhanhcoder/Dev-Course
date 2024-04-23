@@ -16,7 +16,7 @@ import java.util.Date;
 public class JwtProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @Value("giakhanhpro")
+    @Value("${jwt.secret-key}")
     private String secretKey;
     @Value("86400000")
     private Long  accessExpirationMs;
@@ -40,6 +40,14 @@ public class JwtProvider {
                 .compact();
     }
 
+    public String generateRefreshToken(String email){
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + accessExpirationMs))
+                .signWith(key(), SignatureAlgorithm.HS256)
+                .compact();
+    }
 
     public boolean validateJwtToken(String authToken) {
         try {

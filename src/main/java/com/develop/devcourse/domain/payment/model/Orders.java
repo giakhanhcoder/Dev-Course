@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -38,6 +37,6 @@ public class Orders {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private Users users;
 
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<OrderCourse> orderCourseList;
+//    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+//    private List<OrderCourse> orderCourseList;
 }

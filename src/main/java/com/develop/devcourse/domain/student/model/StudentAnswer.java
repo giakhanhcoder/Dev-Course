@@ -21,6 +21,7 @@ public class StudentAnswer {
     private StudentAnswerId studentAnswerId;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "student_answer")
     private Answer studentAnswer;
 
     @ManyToOne
