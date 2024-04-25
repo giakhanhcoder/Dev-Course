@@ -12,4 +12,6 @@ public interface CategoryService {
 
      List<CategoryResponse> getAllCategoryByNameOrDescription(String keyword);
 
+     CategoryResponse findCategoryById(Long categoryId);
+
 }

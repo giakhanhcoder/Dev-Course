@@ -7,10 +7,7 @@ import com.develop.devcourse.domain.course.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,11 +21,17 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<PageResponseDto<CategoryResponse>> getAllCategories(Pageable pageable){
         return ResponseEntity.ok(categoryService.findAllCategory(pageable));
-//        return new ResponseEntity<>(categoryService.findAllCategory(pageable), HttpStatus.OK);
+        // option 2
+        // return new ResponseEntity<>(categoryService.findAllCategory(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/search")
     public ResponseEntity<List<CategoryResponse>> getAllCategoriesByNameOrDescription(@RequestParam("query") String keyword){
             return ResponseEntity.ok(categoryService.getAllCategoryByNameOrDescription(keyword));
+    }
+
+    @GetMapping("/{categoryId}")
+    public ResponseEntity<CategoryResponse> findCategoryById(@PathVariable Long categoryId){
+        return ResponseEntity.ok(categoryService.findCategoryById(categoryId));
     }
 }

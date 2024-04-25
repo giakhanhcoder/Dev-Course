@@ -60,8 +60,9 @@ public class WebSecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling((exception -> exception.authenticationEntryPoint(unauthorizedHandler)))
                 .sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/v1/auth/**").permitAll()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("api/v1/student/**").hasAnyRole("ROLE_STUDENT", "ROLE_MENTOR","ROLE_ADMIN")
                                 .anyRequest().permitAll());
 
         httpSecurity.authenticationProvider(authenticationProvider());

@@ -54,7 +54,7 @@ CREATE TABLE Course (
     course_id VARCHAR(255) PRIMARY KEY,
     course_des TEXT,
     course_name VARCHAR(255) NOT NULL UNIQUE,
-    duration DATETIME(6) NOT NULL,
+    duration int NOT NULL,
     image_course_url VARCHAR(255),
     is_active BIT,
     category_id BIGINT,
@@ -62,7 +62,7 @@ CREATE TABLE Course (
     course_price BIGINT,
     course_rate INT,
     course_feedback VARCHAR(255),
-    user_id VARCHAR(255),  -- Thêm cột mentor_id
+    user_id VARCHAR(255), 
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
     FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
 );

@@ -11,7 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -33,7 +32,7 @@ public class Course {
     private String courseDes;
 
     @Column(name = "duration")
-    private Date duration;
+    private Integer duration;
 
     @Column(name = "image_course_url")
     private String imageCourseUrl;
