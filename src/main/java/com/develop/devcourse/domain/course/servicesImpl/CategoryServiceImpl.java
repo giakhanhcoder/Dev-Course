@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
         pageResponseDto.setTotalPage(page.getTotalPages());
         pageResponseDto.setSize(page.getSize());
         pageResponseDto.setPageNumber(page.getNumber());
-        pageResponseDto.setSort(pageResponseDto.getSort());
+        pageResponseDto.setSort(page.getSort().toString());
 
         return pageResponseDto;
 
@@ -55,5 +55,16 @@ public class CategoryServiceImpl implements CategoryService {
             return categories.stream().map(category -> modelMapper.map(category, CategoryResponse.class))
                     .collect(Collectors.toList());
         }
+    }
+
+    @Override
+    public CategoryResponse findCategoryById(Long categoryId) {
+        Category category = categoryRepository.findByCategoryId(categoryId);
+        if (category == null) {
+            throw CourseException.notFound("Could not found that category with the Id");
+        } else {
+            return modelMapper.map(category, CategoryResponse.class);
+        }
+
     }
 }

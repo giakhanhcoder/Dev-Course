@@ -12,4 +12,6 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     List<Category> findAllByCategoryNameContainingOrDescriptionContaining(String categoryName, String description);
+
+    Category findByCategoryId(Long categoryId);
 }
