@@ -19,8 +19,10 @@ public class RefreshToken {
     @Column(name = "user_id")
     private String userId;
 
+    @Column(name = "token")
     private String token;
 
+    @Column(name = "expiry_date")
     private Instant expiryDate;
 
     @OneToOne(fetch = FetchType.LAZY)

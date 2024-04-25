@@ -2,7 +2,6 @@ package com.develop.devcourse.domain.course.model;
 
 import com.develop.devcourse.domain.lesson.model.Lesson;
 import com.develop.devcourse.domain.mentor.model.Mentor;
-import com.develop.devcourse.domain.payment.model.OrderCourse;
 import com.develop.devcourse.domain.student.model.StudentCourse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -71,6 +70,6 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<StudentCourse> studentCourses;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<OrderCourse> orderCourseList;
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    private List<OrderCourse> orderCourseList;
 }

@@ -9,4 +9,7 @@ public interface UserService {
     Users findById(String userId);
 
     Users findByEmail(String email);
+
+    Boolean existsByEmail(String email);
+
 }
