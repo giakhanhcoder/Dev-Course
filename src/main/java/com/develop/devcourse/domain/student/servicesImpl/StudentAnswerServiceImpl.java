@@ -1,7 +1,7 @@
 package com.develop.devcourse.domain.student.servicesImpl;
 
 import com.develop.devcourse.domain.lesson.dto.request.AnswerRequest;
-import com.develop.devcourse.domain.security.serviceImpl.UserDetailsImpl;
+import com.develop.devcourse.domain.security.servicesImpl.UserDetailsImpl;
 import com.develop.devcourse.domain.student.exception.StudentException;
 import com.develop.devcourse.domain.student.model.StudentAnswer;
 import com.develop.devcourse.domain.student.model.StudentAnswerId;
