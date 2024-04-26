@@ -1,5 +1,6 @@
 package com.develop.devcourse.domain.lesson.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,5 +24,6 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "lesson_id", referencedColumnName = "lesson_id")
+    @JsonIgnore
     private Lesson lesson;
 }

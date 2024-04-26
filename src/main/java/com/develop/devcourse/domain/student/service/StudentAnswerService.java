@@ -1,11 +1,10 @@
 package com.develop.devcourse.domain.student.service;
 
 import com.develop.devcourse.domain.lesson.dto.request.AnswerRequest;
-import com.develop.devcourse.domain.student.exception.StuentException;
-import com.develop.devcourse.domain.student.model.StudentAnswer;
+import com.develop.devcourse.domain.student.exception.StudentException;
 
 import java.util.List;
 
 public interface StudentAnswerService {
-    List<StudentAnswer> save(List<AnswerRequest> answerRequests) throws StuentException;
+    void save(List<AnswerRequest> answerRequests) throws StudentException;
 }

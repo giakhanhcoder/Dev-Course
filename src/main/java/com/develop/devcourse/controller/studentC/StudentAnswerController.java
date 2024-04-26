@@ -22,8 +22,8 @@ public class StudentAnswerController {
     private final StudentAnswerService studentAnswerService;
 
     @PostMapping("/answer")
-    public ResponseEntity<List<com.develop.devcourse.domain.student.model.StudentAnswer>> handlePostAnswer(@RequestBody List<AnswerRequest> answerRequests){
-//        List<StudentAnswer> saveStudentAnswers = studentAnswerService.save(answerRequests);
-        return new ResponseEntity<>(studentAnswerService.save(answerRequests), HttpStatus.OK);
+    public ResponseEntity<String> handlePostAnswer(@RequestBody List<AnswerRequest> answerRequests){
+        studentAnswerService.save(answerRequests);
+        return new ResponseEntity<>("You have answered the question. ", HttpStatus.OK);
     }
 }

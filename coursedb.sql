@@ -61,7 +61,6 @@ CREATE TABLE Course (
     course_title TEXT,
     course_price BIGINT,
     course_rate INT,
-    course_feedback VARCHAR(255),
     user_id VARCHAR(255), 
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
     FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
@@ -92,16 +91,17 @@ CREATE TABLE Question (
     answer ENUM('OPTION_A', 'OPTION_B', 'OPTION_C', 'OPTION_D'),
     question_text VARCHAR(255) NOT NULL,
     lesson_id BIGINT,
-    option_a VARCHAR(255) NOT NULL,
-    option_b VARCHAR(255) NOT NULL,
-    option_c VARCHAR(255) NOT NULL,
-    option_d VARCHAR(255) NOT NULL,
+    option_a VARCHAR(255),
+    option_b VARCHAR(255),
+    option_c VARCHAR(255),
+    option_d VARCHAR(255),
     FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)
 );
 
 -- Tạo bảng Student_course
 CREATE TABLE Student_course (
 	course_score INT, -- điểm khóa học dựa trên đánh giá của học sinh
+	course_feedback VARCHAR(255),
     register_date DATETIME(6),
     course_id VARCHAR(255),
     user_id VARCHAR(255),

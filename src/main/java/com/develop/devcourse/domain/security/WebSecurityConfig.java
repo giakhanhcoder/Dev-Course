@@ -62,8 +62,7 @@ public class WebSecurityConfig {
                 .sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("api/v1/student/**").hasAnyRole("ROLE_STUDENT", "ROLE_MENTOR","ROLE_ADMIN")
-                                .anyRequest().permitAll());
+                        .requestMatchers("api/v1/student/**").hasAnyRole("STUDENT", "MENTOR","ADMIN"));
 
         httpSecurity.authenticationProvider(authenticationProvider());
 

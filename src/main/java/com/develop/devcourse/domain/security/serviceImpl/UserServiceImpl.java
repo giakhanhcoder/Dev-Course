@@ -1,4 +1,4 @@
-package com.develop.devcourse.domain.security.servicesImpl;
+package com.develop.devcourse.domain.security.serviceImpl;
 
 import com.develop.devcourse.common.exeption.DomainException;
 import com.develop.devcourse.domain.security.exeption.UserException;

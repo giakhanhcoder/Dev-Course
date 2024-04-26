@@ -25,14 +25,21 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionResponse> findAllQuestions() {
+//        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         return findAll().stream()
-                .map(question -> modelMapper.map(question,QuestionResponse.class))
+                .map(question -> {
+                    QuestionResponse response = modelMapper.map(question,QuestionResponse.class);
+                    response.setLessonId(question.getLesson().getLessonId());
+                    return response;
+                })
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Question findById(Long id) throws LessonException {
-        return questionRepository.findById(id).orElseThrow(()-> LessonException.notFound("Could not find with ID!"));
+    public QuestionResponse findById(Long id) throws LessonException {
+        Question question = questionRepository.findById(id).orElseThrow(()-> LessonException.notFound("Could not find with ID!"));
+        return modelMapper.map(question, QuestionResponse.class);
     }
 
     @Override
@@ -49,7 +56,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<QuestionResponse> findAllByLessonLessonId(Long lessonId) {
         return questionRepository.findAllByLessonLessonId(lessonId).stream()
-                .map(question -> modelMapper.map(question,QuestionResponse.class))
+                .map(question -> {
+                    QuestionResponse response = modelMapper.map(question,QuestionResponse.class);
+                    response.setLessonId(question.getLesson().getLessonId());
+                    return response;
+                })
                 .collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-package com.develop.devcourse.controller.permitall;
+package com.develop.devcourse.controller.permitAll;
 
 
 import com.develop.devcourse.common.util.PageResponseDto;

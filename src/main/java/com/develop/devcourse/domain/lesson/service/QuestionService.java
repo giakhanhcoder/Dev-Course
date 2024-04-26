@@ -12,7 +12,7 @@ public interface QuestionService {
 
     List<QuestionResponse> findAllQuestions();
 
-    Question findById(Long id) throws LessonException;
+    QuestionResponse findById(Long id) throws LessonException;
     // For Mentor and Admin
     Question save(QuestionRequest questionRequest);
     // For Mentor and Admin

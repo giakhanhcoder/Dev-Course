@@ -31,14 +31,13 @@ public class Lesson {
 
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")
+    @JsonIgnore
     private Course course;
 
     @OneToMany(mappedBy = "lesson")
-    @JsonIgnore
     private List<Question> questions;
 
     @OneToMany(mappedBy = "lesson")
-    @JsonIgnore
     private List<Comment> comments;
 
 }

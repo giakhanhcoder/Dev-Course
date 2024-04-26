@@ -1,7 +1,7 @@
 package com.develop.devcourse.domain.security.jwt;
 
 
-import com.develop.devcourse.domain.security.servicesImpl.UserDetailsServiceImpl;
+import com.develop.devcourse.domain.security.serviceImpl.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

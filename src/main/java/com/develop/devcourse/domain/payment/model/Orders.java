@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.payment.model;
 
 import com.develop.devcourse.domain.security.model.Users;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,10 +32,12 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "total_expenses_id", referencedColumnName = "total_expenses_id")
+    @JsonIgnore
     private TotalExpenses totalExpenses;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonIgnore
     private Users users;
 
 //    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
