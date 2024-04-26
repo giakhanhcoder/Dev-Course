@@ -2,8 +2,6 @@ package com.develop.devcourse.domain.course.model;
 
 import com.develop.devcourse.domain.lesson.model.Lesson;
 import com.develop.devcourse.domain.mentor.model.Mentor;
-import com.develop.devcourse.domain.student.model.StudentCourse;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -63,11 +61,10 @@ public class Course {
     private Mentor mentor;
 
     @OneToMany(mappedBy = "course")
-    @JsonIgnore
     private List<Lesson> lesson;
 
-    @OneToMany(mappedBy = "course")
-    private List<StudentCourse> studentCourses;
+//    @OneToMany(mappedBy = "course")
+//    private List<StudentCourse> studentCourses;
 
 //    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 //    private List<OrderCourse> orderCourseList;

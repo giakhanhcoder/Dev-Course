@@ -1,4 +1,4 @@
-package com.develop.devcourse.domain.course.servicesImpl;
+package com.develop.devcourse.domain.course.serviceImpl;
 
 import com.develop.devcourse.common.util.PageResponseDto;
 import com.develop.devcourse.domain.course.dto.response.CourseResponse;

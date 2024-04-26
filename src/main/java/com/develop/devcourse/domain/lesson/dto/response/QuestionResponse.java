@@ -1,7 +1,6 @@
 package com.develop.devcourse.domain.lesson.dto.response;
 
 import com.develop.devcourse.domain.lesson.model.Answer;
-import com.develop.devcourse.domain.lesson.model.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,6 @@ public class QuestionResponse {
     private String optionB;
     private String optionC;
     private String optionD;
-    private Lesson lesson;
+    private Long lessonId;
     private Answer answer;
 }

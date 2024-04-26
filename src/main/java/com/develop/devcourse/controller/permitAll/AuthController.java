@@ -1,4 +1,4 @@
-package com.develop.devcourse.controller.permitall;
+package com.develop.devcourse.controller.permitAll;
 
 import com.develop.devcourse.domain.security.dto.request.LoginRequest;
 import com.develop.devcourse.domain.security.dto.request.SignupRequest;

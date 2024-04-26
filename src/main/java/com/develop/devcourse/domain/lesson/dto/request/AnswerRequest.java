@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerRequest {
-    private String userId;
+
     private Long questionId;
     private Answer studentAnswer;
 }

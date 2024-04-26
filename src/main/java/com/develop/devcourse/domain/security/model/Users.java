@@ -4,7 +4,6 @@ import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.develop.devcourse.domain.payment.model.Orders;
 import com.develop.devcourse.domain.payment.model.TotalExpenses;
 import com.develop.devcourse.domain.student.model.Student;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -72,11 +71,9 @@ public class Users {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "users")
-    @JsonIgnore
     private List<TotalExpenses> totalExpenses;
 
     @OneToMany(mappedBy = "users")
-    @JsonIgnore
     private List<Orders> ordersList;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

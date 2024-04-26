@@ -1,14 +1,12 @@
 package com.develop.devcourse.domain.lesson.model;
 
 
-import com.develop.devcourse.domain.student.model.StudentAnswer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -43,8 +41,9 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "lesson_id", referencedColumnName = "lesson_id")
+    @JsonIgnore
     private Lesson lesson;
 
-    @OneToMany(mappedBy = "question")
-    private List<StudentAnswer> studentAnswers;
+//    @OneToMany(mappedBy = "question")
+//    private List<StudentAnswer> studentAnswers;
 }

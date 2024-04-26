@@ -29,10 +29,10 @@ public class Student {
     @MapsId
     private Users user;
 
-    @OneToMany(mappedBy = "student")
-    private List<StudentCourse> studentCourses;
+//    @OneToMany(mappedBy = "student")
+//    private List<StudentCourse> studentCourses;
 
-    @OneToMany(mappedBy = "student")
-    private List<StudentAnswer> studentAnswers;
+//    @OneToMany(mappedBy = "student")
+//    private List<StudentAnswer> studentAnswers;
 
 }

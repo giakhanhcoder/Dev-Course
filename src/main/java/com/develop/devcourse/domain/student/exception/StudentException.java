@@ -2,11 +2,11 @@ package com.develop.devcourse.domain.student.exception;
 
 import com.develop.devcourse.common.exeption.DomainException;
 
-public class StuentException extends DomainException {
-    public StuentException(String message){
+public class StudentException extends DomainException {
+    public StudentException(String message){
         super(message);
     }
-    public StuentException(String message, Throwable cause){
+    public StudentException(String message, Throwable cause){
         super(message, cause);
     }
 }

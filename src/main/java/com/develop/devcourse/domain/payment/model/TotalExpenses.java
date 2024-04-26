@@ -32,5 +32,6 @@ public class TotalExpenses {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonIgnore
     private Users users;
 }

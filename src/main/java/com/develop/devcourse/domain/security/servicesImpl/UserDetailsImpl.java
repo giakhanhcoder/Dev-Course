@@ -1,8 +1,7 @@
 package com.develop.devcourse.domain.security.servicesImpl;
 
 import com.develop.devcourse.domain.security.model.Users;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,8 +12,12 @@ import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class UserDetailsImpl implements UserDetails {
 
+    private String id;
     private String email;
     private String password;
     private List<GrantedAuthority> authorities;
@@ -27,6 +30,7 @@ public class UserDetailsImpl implements UserDetails {
                 .collect(Collectors.toList());
 
         return new UserDetailsImpl(
+                user.getUserId(),
                 user.getEmail(),
                 user.getPassword(),
                 authorities,
@@ -35,7 +39,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
