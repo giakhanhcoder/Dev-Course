@@ -1,5 +1,6 @@
 package com.develop.devcourse.domain.security.service;
 
+import com.develop.devcourse.domain.security.dto.request.ChangePasswordRequest;
 import com.develop.devcourse.domain.security.model.Users;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,7 @@ public interface UserService {
     Users findByEmail(String email);
 
     Boolean existsByEmail(String email);
+
+    void changePassword(ChangePasswordRequest changePasswordRequest);
 
 }

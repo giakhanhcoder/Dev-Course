@@ -6,17 +6,19 @@ import com.develop.devcourse.domain.security.dto.response.MessageResponse;
 import com.develop.devcourse.domain.security.dto.response.UserInfoResponse;
 import com.develop.devcourse.domain.security.exeption.LoginFailException;
 import com.develop.devcourse.domain.security.jwt.JwtProvider;
-import com.develop.devcourse.domain.security.model.RefreshToken;
 import com.develop.devcourse.domain.security.model.Role;
 import com.develop.devcourse.domain.security.model.RoleName;
+import com.develop.devcourse.domain.security.model.Token;
 import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.repository.TokenRepository;
 import com.develop.devcourse.domain.security.service.AuthenticationService;
-import com.develop.devcourse.domain.security.service.RefreshTokenService;
+import com.develop.devcourse.domain.security.service.TokenService;
 import com.develop.devcourse.domain.security.service.RoleServices;
 import com.develop.devcourse.domain.security.service.UserService;
 import com.develop.devcourse.domain.student.model.Student;
 import com.develop.devcourse.domain.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +26,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +48,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UserService userService;
 
-    private final RefreshTokenService refreshTokenService;
+    private final TokenService refreshTokenService;
+
+    private final TokenRepository tokenRepository;
+
+    @Value("${jwt.expired.refresh-token}")
+    private Long refreshTokenDurationMs;
 
 
     @Override
@@ -95,9 +103,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         Users user = userService.findByEmail(loginRequest.getEmail());
 
-        RefreshToken refreshToken = refreshTokenService.createRefreshToken(user);
+//        Token refreshToken = refreshTokenService.createToken(user);
 
         String accessToken = jwtProvider.generateTokenFromEmail(loginRequest.getEmail());
+
+        var token = Token.builder()
+                .user(user)
+                .token(accessToken)
+                .expired(false)
+                .revoked(false)
+                .expiryDate(Instant.now().plusMillis(refreshTokenDurationMs))
+                .build();
+        tokenRepository.save(token);
 
         List<String> roles = user.getRoles()
                 .stream()
@@ -109,12 +126,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .email(user.getEmail())
                 .fullName(user.getFullName())
                 .accessToken(accessToken)
-                .refreshToken(refreshToken.getToken())
-                .expiryDate(refreshToken.getExpiryDate())
+                .refreshToken(token.getToken())
+                .expiryDate(token.getExpiryDate())
                 .roles(roles)
                 .image(user.getAvatarUrl())
                 .tokenType("Bearer")
                 .budget(user.getBudget())
                 .build();
     }
+
+
 }

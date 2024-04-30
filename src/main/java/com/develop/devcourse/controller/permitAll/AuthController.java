@@ -5,6 +5,7 @@ import com.develop.devcourse.domain.security.dto.request.SignupRequest;
 import com.develop.devcourse.domain.security.dto.response.MessageResponse;
 import com.develop.devcourse.domain.security.dto.response.UserInfoResponse;
 import com.develop.devcourse.domain.security.service.AuthenticationService;
+import com.develop.devcourse.domain.security.service.TokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
     private final AuthenticationService authenticationService;
+    private final TokenService refreshTokenService;
 
 
     @PostMapping("/sign-up")
@@ -29,4 +31,6 @@ public class AuthController {
     public ResponseEntity<UserInfoResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<>(authenticationService.handleAuthenticateUser(loginRequest), HttpStatus.OK);
     }
+
+
 }

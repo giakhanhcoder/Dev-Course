@@ -30,6 +30,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private final UserDetailsServiceImpl userDetailService;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -38,6 +39,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         try {
             String jwt = getTokenFromRequest(request);
+
 
             if (jwt != null && jwtProvider.validateJwtToken(jwt)) {
                 String email = jwtProvider.getEmailFromJwtToken(jwt);

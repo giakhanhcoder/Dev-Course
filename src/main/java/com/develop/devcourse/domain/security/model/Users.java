@@ -82,8 +82,8 @@ public class Users {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Student student;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private RefreshToken refreshToken;
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     @Transient
     private String fullName;

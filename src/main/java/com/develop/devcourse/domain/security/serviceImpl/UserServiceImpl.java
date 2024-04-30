@@ -1,11 +1,13 @@
 package com.develop.devcourse.domain.security.serviceImpl;
 
 import com.develop.devcourse.common.exeption.DomainException;
+import com.develop.devcourse.domain.security.dto.request.ChangePasswordRequest;
 import com.develop.devcourse.domain.security.exeption.UserException;
 import com.develop.devcourse.domain.security.model.Users;
 import com.develop.devcourse.domain.security.repository.UserRepository;
 import com.develop.devcourse.domain.security.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean existsByEmail(String email) {
         return null;
+    }
+
+    @Override
+    public void changePassword(ChangePasswordRequest changePasswordRequest) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Users user = findByEmail(userDetails.getEmail());
+
+        boolean checkOldPassword = passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword());
+
+        if(!checkOldPassword){
+            throw UserException.badRequest("Incorrect old password. Please try again !");
+        }else{
+            user.setPassword(passwordEncoder.encode(changePasswordRequest.getNewPassword()));
+            userRepository.save(user);
+        }
+
     }
 
 

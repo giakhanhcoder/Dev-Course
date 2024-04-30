@@ -168,12 +168,14 @@ CREATE TABLE Comment (
     lesson_id BIGINT,
     FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)
 );
--- Tạo bảng Refesh_token
-CREATE TABLE Refresh_token (
-    user_id VARCHAR(255),
-    expiry_date DATETIME(6),
+-- Tạo bảng Token
+CREATE TABLE Token (
+    token_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     token VARCHAR(255) NOT NULL UNIQUE,
-    PRIMARY KEY (user_id),
+    expiry_date DATETIME(6),
+    expired bit,
+    revoked bit,
+    user_id varchar(255),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  
 );
 

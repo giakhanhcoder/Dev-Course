@@ -1,4 +1,4 @@
-package com.develop.devcourse.domain.student.servicesImpl;
+package com.develop.devcourse.domain.student.serviceImpl;
 
 import com.develop.devcourse.common.exeption.DomainException;
 import com.develop.devcourse.common.util.UploadService;
