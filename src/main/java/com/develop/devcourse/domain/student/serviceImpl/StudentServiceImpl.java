@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,28 +65,29 @@ public class StudentServiceImpl implements StudentService {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user = userRepository.findById(userDetails.getId()).orElseThrow(()-> DomainException.notFound("Could not found "+userDetails.getUsername()));
 
-        if (studentRequest.getFirstName() != null){
+        if (!studentRequest.getFirstName().isEmpty()){
             user.setFirstName(studentRequest.getFirstName());
         }
-        if (studentRequest.getLastName() != null){
+        if (!studentRequest.getLastName().isEmpty()){
             user.setLastName(studentRequest.getLastName());
         }
-        if (studentRequest.getAddress() != null){
+        if (!studentRequest.getAddress().isEmpty()){
             user.setAddress(studentRequest.getAddress());
         }
         if (studentRequest.getBirthday() != null){
             user.setBirthday(studentRequest.getBirthday());
         }
-        if (studentRequest.getGender() != null){
-            user.setLastName(String.valueOf(studentRequest.getGender()));
+        if (!studentRequest.getGender().isEmpty()){
+            user.setGender(Boolean.parseBoolean(studentRequest.getGender()));
         }
-        if (studentRequest.getPhoneNumber() != null){
+        if (!studentRequest.getPhoneNumber().isEmpty()){
             user.setPhoneNumber(studentRequest.getPhoneNumber());
         }
         if (studentRequest.getAvatarUrl() != null){
             user.setAvatarUrl(uploadService.uploadFile(studentRequest.getAvatarUrl()));
         }
-        return modelMapper.map(user,StudentResponse.class);
+        user.setUpdateAt(new Date());
+        return modelMapper.map(userRepository.save(user),StudentResponse.class);
     }
 
     @Override

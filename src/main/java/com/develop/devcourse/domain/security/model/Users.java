@@ -37,6 +37,9 @@ public class Users {
     @Column(name = "create_At")
     private Date createAt;
 
+    @Column(name = "update_at")
+    private Date updateAt;
+
     @Column(name = "email")
     private String email;
 
