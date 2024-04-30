@@ -2,7 +2,7 @@ package com.develop.devcourse.domain.security.serviceImpl;
 
 import com.develop.devcourse.domain.security.jwt.JwtProvider;
 import com.develop.devcourse.domain.security.model.Token;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.TokenRepository;
 import com.develop.devcourse.domain.security.service.TokenService;
 import jakarta.transaction.Transactional;
@@ -38,7 +38,7 @@ public class TokenImpl implements TokenService {
     }
 
     @Override
-    public Token addToken(Users user, String token, boolean isMobileDevice) {
+    public Token addToken(User user, String token, boolean isMobileDevice) {
         List<Token> userTokens = tokenRepository.findByUser(user);
         int tokenCount = userTokens.size();
         // Số lượng token vượt quá giới hạn, xóa một token cũ
@@ -81,7 +81,7 @@ public class TokenImpl implements TokenService {
 
     @Transactional
     @Override
-    public Token refreshToken(String refreshToken, Users user) throws Exception {
+    public Token refreshToken(String refreshToken, User user) throws Exception {
         Token existingToken = tokenRepository.findByRefreshToken(refreshToken);
         if(existingToken == null){
             throw new Exception("Refresh token dose not exist");

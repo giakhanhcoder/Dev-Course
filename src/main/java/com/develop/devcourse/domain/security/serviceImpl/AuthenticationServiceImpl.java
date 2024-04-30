@@ -10,7 +10,7 @@ import com.develop.devcourse.domain.security.jwt.JwtProvider;
 import com.develop.devcourse.domain.security.model.Role;
 import com.develop.devcourse.domain.security.model.RoleName;
 import com.develop.devcourse.domain.security.model.Token;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.TokenRepository;
 import com.develop.devcourse.domain.security.service.AuthenticationService;
 import com.develop.devcourse.domain.security.service.RoleServices;
@@ -65,7 +65,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleServices.findRoleByRoleName(RoleName.ROLE_STUDENT));
 
-        Users user = new Users();
+        User user = new User();
         user.setFirstName(signupRequest.getFirstName());
         user.setLastName(signupRequest.getLastName());
         user.setEmail(signupRequest.getEmail());
@@ -105,13 +105,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new LoginFailException("Email or password incorrect !");
         }
 
-        Users user = userService.findByEmail(loginRequest.getEmail());
+        User user = userService.findByEmail(loginRequest.getEmail());
 
         String accessToken = jwtProvider.generateTokenFromEmail(loginRequest.getEmail());
 
         String userAgent = request.getHeader("User-Agent");
         String email = jwtProvider.getEmailFromJwtToken(accessToken);
-        Users userDetail = userService.findByEmail(email);
+        User userDetail = userService.findByEmail(email);
         Token jwtToken = tokenService.addToken(userDetail, accessToken, isMobileDevice(userAgent));
 
         List<String> roles = user.getRoles()
@@ -140,7 +140,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     public UserInfoResponse handleRefreshToken(RefreshTokenDto refreshTokenDto) throws Exception {
-        Users user = userService.getUserDetailsFromRefreshToken(refreshTokenDto.getRefreshToken());
+        User user = userService.getUserDetailsFromRefreshToken(refreshTokenDto.getRefreshToken());
         Token jwtToken = tokenService.refreshToken(refreshTokenDto.getRefreshToken(), user);
 
         List<String> roles = user.getRoles()

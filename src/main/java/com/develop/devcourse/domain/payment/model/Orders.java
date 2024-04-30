@@ -1,6 +1,6 @@
 package com.develop.devcourse.domain.payment.model;
 
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,8 +38,7 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @JsonIgnore
-    private Users users;
+    private User user;
 
-//    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-//    private List<OrderCourse> orderCourseList;
+
 }

@@ -68,13 +68,20 @@ CREATE TABLE Course (
     FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
 );
 
+CREATE TABLE Section(
+	 section_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+     section_name VARCHAR(255),
+	course_id VARCHAR(255),
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+
 -- Tạo bảng Lesson
 CREATE TABLE Lesson (
     lesson_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     content_link TEXT NOT NULL,
-    course_id VARCHAR(255),
+    section_id BIGINT,
     lesson_title VARCHAR(255) NOT NULL,
-    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+    FOREIGN KEY (section_id) REFERENCES Section(section_id)
 );
 
 -- Tạo bảng Assignment_Score

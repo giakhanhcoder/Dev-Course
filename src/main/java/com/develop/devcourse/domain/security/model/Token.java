@@ -46,6 +46,6 @@ public class Token {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @JsonIgnore
-    private Users user;
+    private User user;
 
 }

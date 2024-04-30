@@ -1,6 +1,6 @@
 package com.develop.devcourse.domain.security.serviceImpl;
 
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,7 +24,7 @@ public class UserDetailsImpl implements UserDetails {
     private boolean enable;
 
 
-    public static UserDetailsImpl build(Users user){
+    public static UserDetailsImpl build(User user){
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
                 .collect(Collectors.toList());

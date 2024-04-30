@@ -5,7 +5,7 @@ import com.develop.devcourse.domain.security.dto.request.ChangePasswordRequest;
 import com.develop.devcourse.domain.security.exeption.UserException;
 import com.develop.devcourse.domain.security.jwt.JwtProvider;
 import com.develop.devcourse.domain.security.model.Token;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.TokenRepository;
 import com.develop.devcourse.domain.security.repository.UserRepository;
 import com.develop.devcourse.domain.security.service.UserService;
@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     private final TokenRepository tokenRepository;
 
     @Override
-    public Users findById(String userId) {
+    public User findById(String userId) {
         return userRepository.findById(userId).orElseThrow(() -> UserException.notFound("Could not found Id"));
     }
 
     @Override
-    public Users findByEmail(String email) {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> DomainException.notFound(email));
     }
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public void changePassword(ChangePasswordRequest changePasswordRequest) {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        Users user = findByEmail(userDetails.getEmail());
+        User user = findByEmail(userDetails.getEmail());
 
         boolean checkOldPassword = passwordEncoder.matches(changePasswordRequest.getOldPassword(), user.getPassword());
 
@@ -59,19 +59,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Users getUserDetailsFromRefreshToken(String refreshToken) throws Exception {
+    public User getUserDetailsFromRefreshToken(String refreshToken) throws Exception {
         Token existingToken = tokenRepository.findByRefreshToken(refreshToken);
 
         return getUserDetailFromToken(existingToken.getToken());
     }
 
     @Override
-    public Users getUserDetailFromToken(String token) throws Exception {
+    public User getUserDetailFromToken(String token) throws Exception {
         if(jwtProvider.isTokenExpired(token)){
             throw new Exception("Token is expired");
         }
         String subject = jwtProvider.getSubject(token);
-        Optional<Users> user;
+        Optional<User> user;
         user = userRepository.findByEmail(subject);
         return user.orElseThrow(() -> new Exception("User not found"));
     }

@@ -2,7 +2,7 @@ package com.develop.devcourse.domain.student.serviceImpl;
 
 import com.develop.devcourse.common.exeption.DomainException;
 import com.develop.devcourse.common.util.UploadService;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.UserRepository;
 import com.develop.devcourse.domain.security.serviceImpl.UserDetailsImpl;
 import com.develop.devcourse.domain.student.dto.request.StudentRequest;
@@ -29,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
     private final UploadService uploadService;
 
     @Override
-    public Student createStudent(Users user) {
+    public Student createStudent(User user) {
         Student student = new Student();
         student.setUser(user);
         return student;
@@ -56,14 +56,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentResponse getStudentProfile() {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users user = userRepository.findById(userDetails.getId()).orElseThrow(()-> DomainException.notFound("Could not found "+userDetails.getUsername()));
+        User user = userRepository.findById(userDetails.getId()).orElseThrow(()-> DomainException.notFound("Could not found "+userDetails.getUsername()));
         return modelMapper.map(user,StudentResponse.class);
     }
 
     @Override
     public StudentResponse updateStudentProfile(StudentRequest studentRequest) {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users user = userRepository.findById(userDetails.getId()).orElseThrow(()-> DomainException.notFound("Could not found "+userDetails.getUsername()));
+        User user = userRepository.findById(userDetails.getId()).orElseThrow(()-> DomainException.notFound("Could not found "+userDetails.getUsername()));
 
         if (!studentRequest.getFirstName().isEmpty()){
             user.setFirstName(studentRequest.getFirstName());

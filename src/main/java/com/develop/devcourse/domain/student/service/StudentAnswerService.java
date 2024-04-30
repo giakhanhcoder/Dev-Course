@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface StudentAnswerService {
     void save(List<AnswerRequest> answerRequests) throws StudentException;
+
+    List<String> getStudentAnswerByLessonId(Long lessonId);
+
+    double calculateScoreOfLesson(Long lessonId);
 }

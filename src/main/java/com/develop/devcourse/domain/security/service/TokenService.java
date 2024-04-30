@@ -1,7 +1,7 @@
 package com.develop.devcourse.domain.security.service;
 
 import com.develop.devcourse.domain.security.model.Token;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 
 import java.util.Optional;
 
@@ -12,8 +12,8 @@ public interface TokenService {
     // or orElse() to provide a default value in case the value is not found
     Optional<Token> findByToken(String refreshToken);
 
-    Token addToken(Users user, String token, boolean isMobileDevice);
+    Token addToken(User user, String token, boolean isMobileDevice);
 
-    Token refreshToken(String refreshToken, Users user) throws Exception;
+    Token refreshToken(String refreshToken, User user) throws Exception;
 
 }

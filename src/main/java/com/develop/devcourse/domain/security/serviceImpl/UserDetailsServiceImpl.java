@@ -1,7 +1,7 @@
 package com.develop.devcourse.domain.security.serviceImpl;
 
 import com.develop.devcourse.common.exeption.DomainException;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Users user = userRepository.findByEmail(email)
+        User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> DomainException.notFound("User with email: " + email + " !"));
 
         return UserDetailsImpl.build(user);

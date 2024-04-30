@@ -1,6 +1,5 @@
 package com.develop.devcourse.domain.course.model;
 
-import com.develop.devcourse.domain.lesson.model.Lesson;
 import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -47,9 +46,6 @@ public class Course {
     @Column(name = "course_rate")
     private int courseRate;
 
-    @Column(name = "session")
-    private String session;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @JsonIgnoreProperties({"categoryName", "description"})
@@ -61,11 +57,7 @@ public class Course {
     private Mentor mentor;
 
     @OneToMany(mappedBy = "course")
-    private List<Lesson> lesson;
+    private List<Section> section;
 
-//    @OneToMany(mappedBy = "course")
-//    private List<StudentCourse> studentCourses;
 
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    private List<OrderCourse> orderCourseList;
 }

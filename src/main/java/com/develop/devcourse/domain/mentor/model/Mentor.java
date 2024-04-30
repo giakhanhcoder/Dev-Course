@@ -1,7 +1,7 @@
 package com.develop.devcourse.domain.mentor.model;
 
 import com.develop.devcourse.domain.course.model.Course;
-import com.develop.devcourse.domain.security.model.Users;
+import com.develop.devcourse.domain.security.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class Mentor {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @MapsId
-    private Users user;
+    private User user;
 
 
     @OneToMany(mappedBy = "mentor")

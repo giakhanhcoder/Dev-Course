@@ -1,6 +1,8 @@
 package com.develop.devcourse.domain.student.model;
 
 import com.develop.devcourse.domain.lesson.model.Answer;
+import com.develop.devcourse.domain.lesson.model.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,15 +24,15 @@ public class StudentAnswer {
     @Column(name = "student_answer")
     private Answer studentAnswer;
 
-//    @ManyToOne
-//    @JoinColumn(name = "question_id")
-//    @MapsId("questionId")
-//    @JsonIgnore
-//    private Question question;
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    @MapsId("questionId")
+    @JsonIgnore
+    private Question question;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    @MapsId("userId")
-//    @JsonIgnore
-//    private Student student;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @MapsId("userId")
+    @JsonIgnore
+    private Student student;
 }

@@ -1,6 +1,6 @@
 package com.develop.devcourse.domain.lesson.model;
 
-import com.develop.devcourse.domain.course.model.Course;
+import com.develop.devcourse.domain.course.model.Section;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,15 +29,15 @@ public class Lesson {
     @Column(name = "lesson_title")
     private String lessonTitle;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
-    @JsonIgnore
-    private Course course;
-
     @OneToMany(mappedBy = "lesson")
     private List<Question> questions;
 
     @OneToMany(mappedBy = "lesson")
     private List<Comment> comments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id", referencedColumnName = "section_id")
+    @JsonIgnore
+    private Section section;
 
 }

@@ -5,71 +5,90 @@ INSERT INTO Category (category_name, description) VALUES
 ('Language', 'Courses related to language learning');
 
 insert into mentor(user_id, degree, experience)
-values('57199485-cf84-4b72-b3d1-e9dc58820ed8', 'bachelor', 3);
+values('9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'bachelor', 3);
 
 -- Dữ liệu cho các khóa học liên quan đến Công nghệ
-INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, course_feedback, user_id) VALUES
-('course1', 'Learn Web Development', 'Web Development 101', 30, 'web_dev.jpg', 1, 1, 'Introduction to Web Development', 100, 4, 'Great course!', '57199485-cf84-4b72-b3d1-e9dc58820ed8'),
-('course2', 'Master Machine Learning', 'Machine Learning Mastery', 20, 'ml.jpg', 1, 1, 'Advanced Machine Learning Techniques', 150, 5, 'Best course ever!', '57199485-cf84-4b72-b3d1-e9dc58820ed8');
+INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
+('course1', 'Learn Web Development', 'Web Development 101', 30, 'web_dev.jpg', 1, 1, 'Introduction to Web Development', 100, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
+('course2', 'Master Machine Learning', 'Machine Learning Mastery', 20, 'ml.jpg', 1, 1, 'Advanced Machine Learning Techniques', 150, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
 
 -- Dữ liệu cho các khóa học liên quan đến Kinh doanh
-INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, course_feedback, user_id) VALUES
-('course3', 'Entrepreneurship Basics', 'Start Your Own Business', 10, 'business.jpg', 1, 2, 'Foundations of Entrepreneurship', 120, 4, 'Very informative!', '57199485-cf84-4b72-b3d1-e9dc58820ed8'),
-('course4', 'Financial Management', 'Mastering Finance', 15, 'finance.jpg', 1, 2, 'Advanced Financial Strategies', 180, 5, 'Excellent content!', '57199485-cf84-4b72-b3d1-e9dc58820ed8');
+INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
+('course3', 'Entrepreneurship Basics', 'Start Your Own Business', 10, 'business.jpg', 1, 2, 'Foundations of Entrepreneurship', 120, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
+('course4', 'Financial Management', 'Mastering Finance', 15, 'finance.jpg', 1, 2, 'Advanced Financial Strategies', 180, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
 
 -- Dữ liệu cho các khóa học liên quan đến Nghệ thuật
-INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, course_feedback, user_id) VALUES
-('course5', 'Introduction to Drawing', 'Drawing Fundamentals', 22, 'drawing.jpg', 1, 3, 'Basic Drawing Techniques', 90, 4, 'Really helpful!', '57199485-cf84-4b72-b3d1-e9dc58820ed8'),
-('course6', 'Digital Painting Mastery', 'Advanced Digital Art', 24, 'digital_art.jpg', 1, 3, 'Mastering Digital Painting', 150, 5, 'Amazing course!', '57199485-cf84-4b72-b3d1-e9dc58820ed8');
+INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
+('course5', 'Introduction to Drawing', 'Drawing Fundamentals', 22, 'drawing.jpg', 1, 3, 'Basic Drawing Techniques', 90, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
+('course6', 'Digital Painting Mastery', 'Advanced Digital Art', 24, 'digital_art.jpg', 1, 3, 'Mastering Digital Painting', 150, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
 
 -- Dữ liệu cho các khóa học liên quan đến Ngôn ngữ
-INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, course_feedback, user_id) VALUES
-('course7', 'Learn Spanish from scratch', 'Spanish for Beginners', 33, 'spanish.jpg', 1, 4, 'Basic Spanish Course', 80, 4, 'Very helpful for beginners!', '57199485-cf84-4b72-b3d1-e9dc58820ed8'),
-('course8', 'Advanced French Conversation', 'French Mastery', 27, 'french.jpg', 1, 4, 'Advanced French Speaking Skills', 120, 5, 'Great course for advanced learners!', '57199485-cf84-4b72-b3d1-e9dc58820ed8');
+INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
+('course7', 'Learn Spanish from scratch', 'Spanish for Beginners', 33, 'spanish.jpg', 1, 4, 'Basic Spanish Course', 80, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
+('course8', 'Advanced French Conversation', 'French Mastery', 27, 'french.jpg', 1, 4, 'Advanced French Speaking Skills', 120, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
 
+INSERT INTO Section(section_name, course_id) VALUES
+('section 1', 'course1'),
+('section 2', 'course1'),
+('section 3', 'course1'),
+('section 1', 'course2'),
+('section 2', 'course2'),
+('section 3', 'course2'),
+('section 1', 'course3'),
+('section 2', 'course3'),
+('section 3', 'course3'),
+('section 1', 'course4'),
+('section 2', 'course4'),
+('section 3', 'course4'),
+('section 1', 'course5'),
+('section 2', 'course5'),
+('section 3', 'course5'),
+('section 1', 'course6'),
+('section 2', 'course6'),
+('section 3', 'course6');
 -- Tạo dữ liệu cho bảng Lesson dựa trên dữ liệu có sẵn trong bảng Course
 
 -- Bài học cho khóa học "Web Development 101"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('web_dev_lesson1_link', 'course1', 'Introduction to HTML'),
-('web_dev_lesson2_link', 'course1', 'CSS Basics'),
-('web_dev_lesson3_link', 'course1', 'JavaScript Fundamentals'),
-('web_dev_lesson4_link', 'course1', 'Responsive Design Principles');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('web_dev_lesson1_link', 1, 'Introduction to HTML'),
+('web_dev_lesson2_link', 2, 'CSS Basics'),
+('web_dev_lesson3_link', 3, 'JavaScript Fundamentals'),
+('web_dev_lesson4_link', 3, 'Responsive Design Principles');
 
 -- Bài học cho khóa học "Machine Learning Mastery"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('ml_lesson1_link', 'course2', 'Introduction to Machine Learning'),
-('ml_lesson2_link', 'course2', 'Regression Techniques'),
-('ml_lesson3_link', 'course2', 'Classification Algorithms'),
-('ml_lesson4_link', 'course2', 'Clustering Methods');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('ml_lesson1_link', 4, 'Introduction to Machine Learning'),
+('ml_lesson2_link', 5, 'Regression Techniques'),
+('ml_lesson3_link', 6, 'Classification Algorithms'),
+('ml_lesson4_link', 5, 'Clustering Methods');
 
 -- Bài học cho khóa học "Start Your Own Business"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('business_lesson1_link', 'course3', 'Introduction to Entrepreneurship'),
-('business_lesson2_link', 'course3', 'Market Research Strategies'),
-('business_lesson3_link', 'course3', 'Business Plan Development'),
-('business_lesson4_link', 'course3', 'Marketing and Sales Tactics');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('business_lesson1_link', 7, 'Introduction to Entrepreneurship'),
+('business_lesson2_link', 7, 'Market Research Strategies'),
+('business_lesson3_link', 8, 'Business Plan Development'),
+('business_lesson4_link', 9, 'Marketing and Sales Tactics');
 
 -- Bài học cho khóa học "Advanced Digital Art"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('digital_art_lesson1_link', 'course6', 'Introduction to Digital Art'),
-('digital_art_lesson2_link', 'course6', 'Digital Painting Techniques'),
-('digital_art_lesson3_link', 'course6', 'Color Theory for Artists'),
-('digital_art_lesson4_link', 'course6', 'Creating Realistic Digital Portraits');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('digital_art_lesson1_link', 10, 'Introduction to Digital Art'),
+('digital_art_lesson2_link', 11, 'Digital Painting Techniques'),
+('digital_art_lesson3_link', 12, 'Color Theory for Artists'),
+('digital_art_lesson4_link', 12, 'Creating Realistic Digital Portraits');
 
 -- Bài học cho khóa học "Basic Spanish Course"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('spanish_lesson1_link', 'course7', 'Greetings and Introductions'),
-('spanish_lesson2_link', 'course7', 'Basic Vocabulary and Phrases'),
-('spanish_lesson3_link', 'course7', 'Grammar Essentials'),
-('spanish_lesson4_link', 'course7', 'Conversational Practice');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('spanish_lesson1_link', 13, 'Greetings and Introductions'),
+('spanish_lesson2_link', 13, 'Basic Vocabulary and Phrases'),
+('spanish_lesson3_link', 14, 'Grammar Essentials'),
+('spanish_lesson4_link', 15, 'Conversational Practice');
 
 -- Bài học cho khóa học "Advanced French Speaking Skills"
-INSERT INTO Lesson (content_link, course_id, lesson_title) VALUES
-('french_lesson1_link', 'course8', 'Advanced French Pronunciation'),
-('french_lesson2_link', 'course8', 'Idiomatic Expressions and Slang'),
-('french_lesson3_link', 'course8', 'French Literature and Culture'),
-('french_lesson4_link', 'course8', 'Debating and Argumentation in French');
+INSERT INTO Lesson (content_link, section_id, lesson_title) VALUES
+('french_lesson1_link', 16, 'Advanced French Pronunciation'),
+('french_lesson2_link', 17, 'Idiomatic Expressions and Slang'),
+('french_lesson3_link', 18, 'French Literature and Culture'),
+('french_lesson4_link', 18, 'Debating and Argumentation in French');
 
 -- Tạo dữ liệu cho bảng Question dựa trên các bài học có sẵn trong bảng Lesson
 
@@ -134,6 +153,9 @@ INSERT INTO Question (answer, question_text, lesson_id, option_a, option_b, opti
 ('OPTION_B', 'What is the purpose of a sales strategy?', 10, 'To increase production costs', 'To increase sales revenue and market share', 'To decrease customer satisfaction', 'To decrease brand loyalty');
 
 INSERT INTO Student_answer (question_id, user_id, student_answer) VALUES
-(1, '57199485-cf84-4b72-b3d1-e9dc58820ed8', 'OPTION_B'),
-(2, '57199485-cf84-4b72-b3d1-e9dc58820ed8', 'OPTION_C'),
-(3, '57199485-cf84-4b72-b3d1-e9dc58820ed8', 'OPTION_A'),
+(1, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_B'),
+(2, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_C'),
+(3, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_A'),
+(4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_D'),
+(5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_B'),
+(6, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'OPTION_A')
