@@ -3,7 +3,7 @@ package com.develop.devcourse.domain.security.dto.response;
 
 import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -18,7 +18,7 @@ public class UserInfoResponse {
     private String accessToken;
     private String refreshToken;
     private List<String> roles;
-    private Instant expiryDate;
+    private LocalDateTime expiryDate;
     private String image;
     private String tokenType;
     private Long budget;

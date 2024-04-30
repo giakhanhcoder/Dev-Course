@@ -47,8 +47,8 @@ public class Course {
     @Column(name = "course_rate")
     private int courseRate;
 
-    @Column(name = "course_feedback")
-    private String courseFeedback;
+    @Column(name = "session")
+    private String session;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")

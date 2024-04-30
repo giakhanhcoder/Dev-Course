@@ -19,6 +19,7 @@ CREATE TABLE Users (
     address VARCHAR(255),
     birthday DATETIME(6),
     create_at DATETIME(6),
+	update_at DATETIME(6),
     email VARCHAR(255) NOT NULL UNIQUE,
     is_active BIT,
     first_name VARCHAR(255) NOT NULL,
@@ -61,6 +62,7 @@ CREATE TABLE Course (
     course_title TEXT,
     course_price BIGINT,
     course_rate INT,
+    session varchar(255),
     user_id VARCHAR(255), 
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
     FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
@@ -172,10 +174,14 @@ CREATE TABLE Comment (
 CREATE TABLE Token (
     token_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     token VARCHAR(255) NOT NULL UNIQUE,
-    expiry_date DATETIME(6),
+    expiration_date DATETIME(6),
     expired bit,
     revoked bit,
+     refresh_token VARCHAR(255) NOT NULL UNIQUE,
+    refresh_expiration_date DATETIME(6),
+     token_type varchar(255),
     user_id varchar(255),
+    is_mobile TINYINT DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)  
 );
 

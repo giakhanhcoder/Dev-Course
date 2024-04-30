@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.security.serviceImpl;
 
 import com.develop.devcourse.domain.security.dto.request.LoginRequest;
+import com.develop.devcourse.domain.security.dto.request.RefreshTokenDto;
 import com.develop.devcourse.domain.security.dto.request.SignupRequest;
 import com.develop.devcourse.domain.security.dto.response.MessageResponse;
 import com.develop.devcourse.domain.security.dto.response.UserInfoResponse;
@@ -12,11 +13,12 @@ import com.develop.devcourse.domain.security.model.Token;
 import com.develop.devcourse.domain.security.model.Users;
 import com.develop.devcourse.domain.security.repository.TokenRepository;
 import com.develop.devcourse.domain.security.service.AuthenticationService;
-import com.develop.devcourse.domain.security.service.TokenService;
 import com.develop.devcourse.domain.security.service.RoleServices;
+import com.develop.devcourse.domain.security.service.TokenService;
 import com.develop.devcourse.domain.security.service.UserService;
 import com.develop.devcourse.domain.student.model.Student;
 import com.develop.devcourse.domain.student.service.StudentService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -26,7 +28,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,12 +49,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final UserService userService;
 
-    private final TokenService refreshTokenService;
-
     private final TokenRepository tokenRepository;
+
+    private final TokenService tokenService;
 
     @Value("${jwt.expired.refresh-token}")
     private Long refreshTokenDurationMs;
+
+
 
 
     @Override
@@ -86,7 +89,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public UserInfoResponse handleAuthenticateUser(LoginRequest loginRequest) {
+    public UserInfoResponse handleAuthenticateUser(LoginRequest loginRequest, HttpServletRequest request) {
         try {
             // when call authenticationManager.authenticate()
             // AuthenticationManager will access all AuthenticationProviders
@@ -104,18 +107,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         Users user = userService.findByEmail(loginRequest.getEmail());
 
-//        Token refreshToken = refreshTokenService.createToken(user);
-
         String accessToken = jwtProvider.generateTokenFromEmail(loginRequest.getEmail());
 
-        var token = Token.builder()
-                .user(user)
-                .token(accessToken)
-                .expired(false)
-                .revoked(false)
-                .expiryDate(Instant.now().plusMillis(refreshTokenDurationMs))
-                .build();
-        tokenRepository.save(token);
+        String userAgent = request.getHeader("User-Agent");
+        String email = jwtProvider.getEmailFromJwtToken(accessToken);
+        Users userDetail = userService.findByEmail(email);
+        Token jwtToken = tokenService.addToken(userDetail, accessToken, isMobileDevice(userAgent));
 
         List<String> roles = user.getRoles()
                 .stream()
@@ -127,8 +124,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .email(user.getEmail())
                 .fullName(user.getFullName())
                 .accessToken(accessToken)
-                .refreshToken(token.getToken())
-                .expiryDate(token.getExpiryDate())
+                .refreshToken(jwtToken.getRefreshToken())
+                .expiryDate(jwtToken.getExpirationDate())
                 .roles(roles)
                 .image(user.getAvatarUrl())
                 .tokenType("Bearer")
@@ -136,5 +133,35 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .build();
     }
 
+    private boolean isMobileDevice(String userAgent) {
+        // Kiểm tra User-Agent header để xác định thiết bị di động
+        // Ví dụ đơn giản:
+        return userAgent.toLowerCase().contains("mobile");
+    }
+
+    public UserInfoResponse handleRefreshToken(RefreshTokenDto refreshTokenDto) throws Exception {
+        Users user = userService.getUserDetailsFromRefreshToken(refreshTokenDto.getRefreshToken());
+        Token jwtToken = tokenService.refreshToken(refreshTokenDto.getRefreshToken(), user);
+
+        List<String> roles = user.getRoles()
+                .stream()
+                .map(role -> role.getRoleName().name())
+                .toList();
+
+
+        return UserInfoResponse.builder()
+                .id(user.getUserId())
+                .email(user.getEmail())
+                .fullName(user.getFullName())
+                .accessToken(jwtToken.getToken())
+                .refreshToken(jwtToken.getRefreshToken())
+                .expiryDate(jwtToken.getExpirationDate())
+                .roles(roles)
+                .image(user.getAvatarUrl())
+                .tokenType("Bearer")
+                .budget(user.getBudget())
+                .build();
+
+    }
 
 }

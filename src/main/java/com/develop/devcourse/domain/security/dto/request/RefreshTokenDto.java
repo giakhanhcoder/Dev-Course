@@ -1,16 +1,14 @@
 package com.develop.devcourse.domain.security.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TokenRefreshRequest {
+@Builder
+public class RefreshTokenDto {
 
     @NotBlank
     private String refreshToken;

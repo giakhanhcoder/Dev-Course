@@ -15,4 +15,7 @@ public interface UserService {
 
     void changePassword(ChangePasswordRequest changePasswordRequest);
 
+    Users getUserDetailsFromRefreshToken(String token) throws Exception;
+
+    Users getUserDetailFromToken(String token) throws Exception;
 }
