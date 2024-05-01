@@ -62,7 +62,6 @@ CREATE TABLE Course (
     course_title TEXT,
     course_price BIGINT,
     course_rate INT,
-    session varchar(255),
     user_id VARCHAR(255), 
     FOREIGN KEY (category_id) REFERENCES Category(category_id),
     FOREIGN KEY (user_id) REFERENCES Mentor(user_id)  -- Thêm khóa ngoại đến Mentor
