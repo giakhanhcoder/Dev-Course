@@ -24,6 +24,9 @@ public class StudentCourse {
     @Column(name = "course_score")
     private Integer courseScore;
 
+    @Column(name = "course_feedback")
+    private String courseFeedback;
+
     @Column(name = "register_date")
     private Date registerDate;
 

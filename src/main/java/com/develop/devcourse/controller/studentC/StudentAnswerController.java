@@ -1,9 +1,12 @@
 package com.develop.devcourse.controller.studentC;
 
+import com.develop.devcourse.domain.course.dto.response.CourseResponse;
 import com.develop.devcourse.domain.lesson.dto.request.AnswerRequest;
 import com.develop.devcourse.domain.lesson.dto.response.LessonResponse;
 import com.develop.devcourse.domain.lesson.service.LessonService;
+import com.develop.devcourse.domain.student.dto.response.StudentCourseResponse;
 import com.develop.devcourse.domain.student.service.StudentAnswerService;
+import com.develop.devcourse.domain.student.service.StudentCourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api/v1/student")
 //@PreAuthorize("hasAnyAuthority('ROLE_STUDENT')")
 public class StudentAnswerController {
-
+    private final StudentCourseService studentCourseService;
     private final StudentAnswerService studentAnswerService;
     private final LessonService lessonService;
 
@@ -39,5 +42,10 @@ public class StudentAnswerController {
     @GetMapping("/lesson/{courseId}")
     public ResponseEntity<List<LessonResponse>> getLessonByCourseId(@PathVariable String courseId){
         return ResponseEntity.ok(lessonService.getAllLessonByCourseId(courseId));
+    }
+
+    @GetMapping("/course")
+    public ResponseEntity<List<StudentCourseResponse>> getAllCourseByUser(){
+        return ResponseEntity.ok(studentCourseService.getStudentCourse());
     }
 }
