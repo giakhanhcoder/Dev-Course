@@ -23,6 +23,7 @@ public class StudentAnswerServiceImpl implements StudentAnswerService {
     private final StudentAnswerRepository studentAnswerRepository;
     private final QuestionRepository questionRepository;
 
+
     @Override
     public void save(List<AnswerRequest> answerRequests) throws StudentException {
 
@@ -68,6 +69,9 @@ public class StudentAnswerServiceImpl implements StudentAnswerService {
             }
         }
         double score = (calculateScore / total) * 10;
+
+
+
         return score;
     }
 }

@@ -174,8 +174,11 @@ CREATE TABLE Comment (
     comment_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     comment_body VARCHAR(255),
     lesson_id BIGINT,
-    FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)
+	FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id),
+    user_id VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+
 -- Tạo bảng Token
 CREATE TABLE Token (
     token_id BIGINT AUTO_INCREMENT PRIMARY KEY,

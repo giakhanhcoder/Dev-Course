@@ -1,5 +1,7 @@
 package com.develop.devcourse.domain.security.model;
 
+import com.develop.devcourse.domain.lesson.model.Comment;
+import com.develop.devcourse.domain.lesson.model.Question;
 import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.develop.devcourse.domain.payment.model.Orders;
 import com.develop.devcourse.domain.payment.model.TotalExpenses;
@@ -87,6 +89,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comment;
 
     @Transient
     private String fullName;

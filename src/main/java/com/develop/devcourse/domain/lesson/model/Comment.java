@@ -1,17 +1,16 @@
 package com.develop.devcourse.domain.lesson.model;
 
+import com.develop.devcourse.domain.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "comment")
 public class Comment {
     @Id
@@ -26,4 +25,9 @@ public class Comment {
     @JoinColumn(name = "lesson_id", referencedColumnName = "lesson_id")
     @JsonIgnore
     private Lesson lesson;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonIgnore
+    private User user;
 }
