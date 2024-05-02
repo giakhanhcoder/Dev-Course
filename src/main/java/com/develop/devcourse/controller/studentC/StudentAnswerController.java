@@ -1,6 +1,8 @@
 package com.develop.devcourse.controller.studentC;
 
 import com.develop.devcourse.domain.lesson.dto.request.AnswerRequest;
+import com.develop.devcourse.domain.lesson.dto.response.LessonResponse;
+import com.develop.devcourse.domain.lesson.service.LessonService;
 import com.develop.devcourse.domain.student.service.StudentAnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import java.util.List;
 public class StudentAnswerController {
 
     private final StudentAnswerService studentAnswerService;
+    private final LessonService lessonService;
 
     @PostMapping("/answer")
     public ResponseEntity<String> handlePostAnswer(@RequestBody List<AnswerRequest> answerRequests){
@@ -31,5 +34,10 @@ public class StudentAnswerController {
     @GetMapping("/score/{lessonId}")
     public ResponseEntity<Double> calculateScoreOfLesson(@PathVariable Long lessonId){
         return ResponseEntity.ok(studentAnswerService.calculateScoreOfLesson(lessonId));
+    }
+
+    @GetMapping("/lesson/{courseId}")
+    public ResponseEntity<List<LessonResponse>> getLessonByCourseId(@PathVariable String courseId){
+        return ResponseEntity.ok(lessonService.getAllLessonByCourseId(courseId));
     }
 }

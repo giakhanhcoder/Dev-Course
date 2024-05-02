@@ -12,4 +12,5 @@ public interface CourseRepository extends JpaRepository<Course, String> {
     List<Course> findAllByCourseNameContainingOrCourseDesContaining(String courseName, String courseDes);
 
     Course findByCourseId(String courseId);
+
 }
