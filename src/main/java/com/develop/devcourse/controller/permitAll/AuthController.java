@@ -1,5 +1,7 @@
 package com.develop.devcourse.controller.permitAll;
 
+import com.develop.devcourse.domain.mentor.dto.request.MentorRequest;
+import com.develop.devcourse.domain.mentor.service.MentorService;
 import com.develop.devcourse.domain.security.dto.request.LoginRequest;
 import com.develop.devcourse.domain.security.dto.request.RefreshTokenDto;
 import com.develop.devcourse.domain.security.dto.request.SignupRequest;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
     private final AuthenticationService authenticationService;
+    private final MentorService mentorService;
+
 
 
     @PostMapping("/sign-up")
@@ -37,5 +41,10 @@ public class AuthController {
     public ResponseEntity<UserInfoResponse> refreshToken(
             @Valid @RequestBody RefreshTokenDto refreshTokenDto) throws Exception{
         return ResponseEntity.ok(authenticationService.handleRefreshToken(refreshTokenDto));
+    }
+
+    @PostMapping("/mentor/register")
+    public ResponseEntity<MessageResponse> registerToMentor(@Valid @RequestBody MentorRequest mentorRequest){
+        return ResponseEntity.ok(mentorService.registerToMentor(mentorRequest));
     }
 }

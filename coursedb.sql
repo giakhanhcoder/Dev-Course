@@ -54,7 +54,7 @@ CREATE TABLE Mentor (
 CREATE TABLE Course (
     course_id VARCHAR(255) PRIMARY KEY,
     course_des TEXT,
-    course_name VARCHAR(255) NOT NULL UNIQUE,
+    course_name VARCHAR(255) NOT NULL,
     duration int NOT NULL,
     image_course_url VARCHAR(255),
     is_active BIT,

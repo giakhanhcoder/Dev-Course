@@ -10,8 +10,6 @@ import lombok.*;
 @Builder
 public class CourseRequest {
 
-    private String courseId;
-
     @NotNull
     private String courseName;
 

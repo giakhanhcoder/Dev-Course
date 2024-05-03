@@ -28,7 +28,7 @@ public class Mentor {
     @Column(name = "experience")
     private int experience;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @MapsId
     private User user;

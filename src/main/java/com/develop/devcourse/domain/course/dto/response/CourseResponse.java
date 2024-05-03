@@ -18,4 +18,5 @@ public class CourseResponse {
     private Long coursePrice;
     private int courseRate;
     private String categoryName;
+    private String userId;
 }

@@ -3,10 +3,7 @@ package com.develop.devcourse.domain.course.model;
 import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 

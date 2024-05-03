@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,8 +62,9 @@ public class WebSecurityConfig {
                 .sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("api/v1/student/**").hasAnyRole("STUDENT", "MENTOR","ADMIN"));
-
+                        .requestMatchers("api/v1/student/**").hasAnyRole("STUDENT", "MENTOR","ADMIN")
+                        .requestMatchers("api/v1/courses/**").hasAnyRole("STUDENT", "MENTOR","ADMIN")
+                        .requestMatchers("/api/v1/mentor/**").hasAnyRole("MENTOR", "ADMIN"));
         httpSecurity.authenticationProvider(authenticationProvider());
 
         httpSecurity.addFilterBefore(authTokenFilter,

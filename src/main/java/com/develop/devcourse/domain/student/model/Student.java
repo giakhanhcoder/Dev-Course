@@ -22,7 +22,7 @@ public class Student {
     @Column(name = "performance")
     private String performance;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @MapsId
     private User user;

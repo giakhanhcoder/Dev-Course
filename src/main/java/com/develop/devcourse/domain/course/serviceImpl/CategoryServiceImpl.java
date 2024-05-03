@@ -65,6 +65,5 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             return modelMapper.map(category, CategoryResponse.class);
         }
-
     }
 }
