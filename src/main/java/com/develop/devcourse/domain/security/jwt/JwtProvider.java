@@ -47,7 +47,7 @@ public class JwtProvider {
                 .setClaims(claims)
                 .setSubject(email)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + accessExpirationMs))
+                .setExpiration(new Date((new Date()).getTime() + accessExpirationMs * 1000L))
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }

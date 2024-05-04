@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.mentor.serviceImpl;
 
 import com.develop.devcourse.domain.mentor.dto.request.MentorRequest;
+import com.develop.devcourse.domain.mentor.dto.response.MentorResponse;
 import com.develop.devcourse.domain.mentor.exeption.MentorException;
 import com.develop.devcourse.domain.mentor.model.Mentor;
 import com.develop.devcourse.domain.mentor.repository.MentorRepository;
@@ -55,6 +56,23 @@ public class MentorServiceImpl implements MentorService {
         return MessageResponse.builder()
                 .httpStatus(HttpStatus.CREATED)
                 .message("Register to be mentor successfully")
+                .build();
+    }
+
+    @Override
+    public MentorResponse updateProfileMentor(MentorRequest mentorRequest) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Mentor mentor = mentorRepository.findById(userDetails.getId()).orElse(null);
+        if(mentor == null){
+            throw new MentorException("You must be register to be mentor to update your mentor profile");
+        }
+        mentor.setExperience(mentorRequest.getExperience());
+        mentor.setDegree(mentorRequest.getDegree());
+        mentorRepository.save(mentor);
+        return MentorResponse.builder()
+                .userId(mentor.getMentorId())
+                .degree(mentor.getDegree())
+                .experience(mentor.getExperience())
                 .build();
     }
 }

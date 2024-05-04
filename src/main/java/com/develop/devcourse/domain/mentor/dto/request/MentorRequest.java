@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.mentor.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,6 @@ public class MentorRequest {
     @NotBlank
     private String degree;
 
-    private int experience;
+    @NotNull
+    private Integer experience;
 }
