@@ -75,4 +75,20 @@ public class MentorServiceImpl implements MentorService {
                 .experience(mentor.getExperience())
                 .build();
     }
+
+    @Override
+    public MentorResponse showMentorProfile() {
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Mentor mentor = mentorRepository.findById(userDetails.getId()).orElse(null);
+        if(mentor == null){
+            throw new MentorException("You must be register to be mentor to see your mentor profile");
+        }
+        User user = userService.findByEmail(userDetails.getEmail());
+        return MentorResponse.builder()
+                .userId(mentor.getMentorId())
+                .fullName(user.getFullName())
+                .degree(mentor.getDegree())
+                .experience(mentor.getExperience())
+                .build();
+    }
 }

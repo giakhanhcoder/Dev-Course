@@ -87,7 +87,7 @@ CREATE TABLE Lesson (
 CREATE TABLE ASSIGNMENT_SCORE(
 	 user_id VARCHAR(255),
      lesson_id BIGINT,
-     score float,
+     score double,
 	 PRIMARY KEY (user_id, lesson_id),
 	 FOREIGN KEY (user_id) REFERENCES Student(user_id),
 	 FOREIGN KEY (lesson_id) REFERENCES Lesson(lesson_id)

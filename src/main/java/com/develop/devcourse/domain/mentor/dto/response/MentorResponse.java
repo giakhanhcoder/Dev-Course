@@ -10,6 +10,7 @@ import lombok.*;
 public class MentorResponse {
 
     private String userId;
+    private String fullName;
     private String degree;
     private int experience;
 }

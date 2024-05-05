@@ -9,4 +9,6 @@ public interface MentorService {
 
     MentorResponse updateProfileMentor(MentorRequest mentorRequest);
 
+    MentorResponse showMentorProfile();
+
 }

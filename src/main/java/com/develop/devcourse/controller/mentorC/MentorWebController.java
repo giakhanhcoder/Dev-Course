@@ -6,10 +6,7 @@ import com.develop.devcourse.domain.mentor.service.MentorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,6 +18,11 @@ public class MentorWebController {
     @PutMapping("/profile")
     public ResponseEntity<MentorResponse> updateProfileMentor(@Valid @RequestBody MentorRequest mentorRequest){
         return ResponseEntity.ok(mentorService.updateProfileMentor(mentorRequest));
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<MentorResponse> showMentorProfile(){
+        return ResponseEntity.ok(mentorService.showMentorProfile());
     }
 
 }

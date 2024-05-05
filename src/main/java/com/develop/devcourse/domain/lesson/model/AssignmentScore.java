@@ -1,5 +1,7 @@
 package com.develop.devcourse.domain.lesson.model;
 
+import com.develop.devcourse.domain.student.model.Student;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +20,17 @@ public class AssignmentScore {
     private AssignmentScoreId assignmentScoreId;
 
     @Column(name = "score")
-    private float score;
+    private double score;
+
+    @ManyToOne
+    @JoinColumn(name = "lesson_id")
+    @MapsId("lessonId")
+    @JsonIgnore
+    private Lesson lesson;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @MapsId("userId")
+    @JsonIgnore
+    private Student student;
 }
