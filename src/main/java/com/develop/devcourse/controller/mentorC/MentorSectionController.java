@@ -28,4 +28,22 @@ public class MentorSectionController {
                                                                            @Valid @RequestBody List<SectionRequest> sectionRequest){
         return ResponseEntity.ok(sectionService.postSectionToCourseId(sectionRequest, courseId));
     }
+
+    @PutMapping("{sectionId}/{courseId}")
+    public ResponseEntity<MessageResponse> updateSectionByCourseAndSectionId(@PathVariable(value = "sectionId") Long sectionId,
+                                                                             @PathVariable(value = "courseId") String courseId,
+                                                                             @Valid @RequestBody SectionRequest sectionRequest){
+        return ResponseEntity.ok(sectionService.updateSectionByCourseAndSectionId(sectionRequest, sectionId, courseId));
+    }
+
+    @DeleteMapping("{sectionId}/{courseId}")
+    public ResponseEntity<MessageResponse> deleteSectionByCourseAndSectionId(@PathVariable(value = "sectionId") Long sectionId,
+                                                                             @PathVariable(value = "courseId") String courseId){
+        return ResponseEntity.ok(sectionService.deleteSectionByCourseAndSectionId(sectionId, courseId));
+    }
+
+    @DeleteMapping("{courseId}")
+    public ResponseEntity<MessageResponse> deleteAllSectionByCourseId(@PathVariable(value = "courseId") String courseId){
+        return ResponseEntity.ok(sectionService.deleteAllSectionByCourseId(courseId));
+    }
 }

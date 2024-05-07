@@ -11,4 +11,9 @@ public interface SectionService{
 
     MessageResponse postSectionToCourseId(List<SectionRequest> sectionRequests, String courseId);
 
+    MessageResponse updateSectionByCourseAndSectionId(SectionRequest sectionRequest, Long sectionId, String courseId);
+
+    MessageResponse deleteSectionByCourseAndSectionId(Long sectionId, String courseId);
+
+    MessageResponse deleteAllSectionByCourseId(String courseId);
 }
