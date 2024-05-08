@@ -4,6 +4,7 @@ import com.develop.devcourse.common.exeption.DomainException;
 import com.develop.devcourse.common.util.UploadService;
 import com.develop.devcourse.domain.security.model.User;
 import com.develop.devcourse.domain.security.repository.UserRepository;
+import com.develop.devcourse.domain.security.service.UserService;
 import com.develop.devcourse.domain.security.serviceImpl.UserDetailsImpl;
 import com.develop.devcourse.domain.student.dto.request.StudentRequest;
 import com.develop.devcourse.domain.student.dto.response.StudentResponse;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
     private final ModelMapper modelMapper;
     private final UploadService uploadService;
 
@@ -93,5 +96,12 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteById(String userId) {
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public void toggleStudentById(String userId) {
+        User user = userService.findById(userId);
+        user.setActive(!user.isActive());
+        userRepository.save(user);
     }
 }

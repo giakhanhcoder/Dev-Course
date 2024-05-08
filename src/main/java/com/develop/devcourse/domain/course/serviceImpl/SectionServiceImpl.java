@@ -2,7 +2,7 @@ package com.develop.devcourse.domain.course.serviceImpl;
 
 import com.develop.devcourse.domain.course.dto.request.SectionRequest;
 import com.develop.devcourse.domain.course.dto.response.SectionResponse;
-import com.develop.devcourse.domain.course.exeption.CourseException;
+import com.develop.devcourse.domain.course.exception.CourseException;
 import com.develop.devcourse.domain.course.model.Course;
 import com.develop.devcourse.domain.course.model.Section;
 import com.develop.devcourse.domain.course.repository.CourseRepository;

@@ -1,4 +1,4 @@
-package com.develop.devcourse.domain.course.exeption;
+package com.develop.devcourse.domain.course.exception;
 
 import com.develop.devcourse.common.exeption.DomainException;
 

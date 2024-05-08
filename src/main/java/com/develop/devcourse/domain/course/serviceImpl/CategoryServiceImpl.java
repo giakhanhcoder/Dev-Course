@@ -2,8 +2,9 @@ package com.develop.devcourse.domain.course.serviceImpl;
 
 
 import com.develop.devcourse.common.util.PageResponseDto;
+import com.develop.devcourse.domain.course.dto.request.CategoryRequest;
 import com.develop.devcourse.domain.course.dto.response.CategoryResponse;
-import com.develop.devcourse.domain.course.exeption.CourseException;
+import com.develop.devcourse.domain.course.exception.CourseException;
 import com.develop.devcourse.domain.course.model.Category;
 import com.develop.devcourse.domain.course.repository.CategoryRepository;
 import com.develop.devcourse.domain.course.service.CategoryService;
@@ -65,5 +66,21 @@ public class CategoryServiceImpl implements CategoryService {
         } else {
             return modelMapper.map(category, CategoryResponse.class);
         }
+    }
+
+    @Override
+    public CategoryResponse addNewCategory(CategoryRequest categoryRequest) {
+        Category category = categoryRepository.findByCategoryId(categoryRequest.getCategoryId());
+        if (category == null){
+            // add new
+            categoryRepository.save(modelMapper.map(categoryRequest,Category.class));
+        }
+        else {
+            // edit
+            category.setCategoryName(categoryRequest.getCategoryName());
+            category.setDescription(categoryRequest.getDescription());
+            categoryRepository.save(category);
+        }
+        return modelMapper.map(category,CategoryResponse.class);
     }
 }

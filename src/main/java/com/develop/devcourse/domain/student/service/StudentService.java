@@ -16,4 +16,5 @@ public interface StudentService {
     StudentResponse getStudentProfile();
     StudentResponse updateStudentProfile(StudentRequest studentRequest);
     void deleteById(String userId);
+    void toggleStudentById(String userId);
 }

@@ -3,7 +3,7 @@ package com.develop.devcourse.domain.course.serviceImpl;
 import com.develop.devcourse.common.util.PageResponseDto;
 import com.develop.devcourse.domain.course.dto.request.CourseRequest;
 import com.develop.devcourse.domain.course.dto.response.CourseResponse;
-import com.develop.devcourse.domain.course.exeption.CourseException;
+import com.develop.devcourse.domain.course.exception.CourseException;
 import com.develop.devcourse.domain.course.model.Category;
 import com.develop.devcourse.domain.course.model.Course;
 import com.develop.devcourse.domain.course.repository.CategoryRepository;

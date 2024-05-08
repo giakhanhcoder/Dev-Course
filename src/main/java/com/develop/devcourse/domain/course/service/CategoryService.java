@@ -1,6 +1,7 @@
 package com.develop.devcourse.domain.course.service;
 
 import com.develop.devcourse.common.util.PageResponseDto;
+import com.develop.devcourse.domain.course.dto.request.CategoryRequest;
 import com.develop.devcourse.domain.course.dto.response.CategoryResponse;
 import org.springframework.data.domain.Pageable;
 
@@ -14,4 +15,5 @@ public interface CategoryService {
 
      CategoryResponse findCategoryById(Long categoryId);
 
+     CategoryResponse addNewCategory(CategoryRequest categoryRequest);
 }
