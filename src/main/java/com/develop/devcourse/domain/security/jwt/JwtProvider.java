@@ -27,9 +27,6 @@ public class JwtProvider {
     @Value("${jwt.expired.access-token}")
     private Long  accessExpirationMs;
 
-    private final TokenRepository tokenRepository;
-
-
     public String getEmailFromJwtToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key()).build()
                 .parseClaimsJws(token).getBody().getSubject();

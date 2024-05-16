@@ -139,35 +139,34 @@ CREATE TABLE User_role (
 
 
 -- Tạo bảng Total_Expenses
-CREATE TABLE Total_Expenses (
-    total_expenses_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    total_expenses BIGINT,
+CREATE TABLE Orders (
+    order_id VARCHAR(255) PRIMARY KEY,
     user_id VARCHAR(255),
+	full_name varchar(255),
+	email varchar(255) NOT NULL,
+	phone_number VARCHAR(255) NOT NULL,
+	note VARCHAR(255),
+	 order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    tracking_number varchar(255),
+--    status ENUM('pending', 'processing', 'delivered', 'cancelled'),
+    status VARCHAR(255),
+	total_money BIGINT,
+    shipping_method VARCHAR(255),
+    shipping_address VARCHAR(255),   
+    shipping_date DATE,
+    payment_method VARCHAR(255),   
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 -- Tạo bảng Order
-CREATE TABLE Orders (
-    order_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    serial_number VARCHAR(255),
-    user_id VARCHAR(255) NOT NULL,  -- Sửa kiểu dữ liệu thành VARCHAR(255)
-    course_id VARCHAR(255),
-    payment_at DATETIME(6),
-    total_expenses_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (total_expenses_id) REFERENCES Total_Expenses(total_expenses_id)
+CREATE TABLE Order_Detail (
+    order_detail_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	course_price BIGINT,
+    order_id VARCHAR(255),
+	course_id VARCHAR(255),
+	FOREIGN KEY (course_id) REFERENCES Course(course_id),
+	FOREIGN KEY (order_id) REFERENCES Orders(order_id)
 );
-
--- Tạo bảng trung gian để lưu thông tin về các đơn hàng và khóa học được mua
-CREATE TABLE Order_Course (
-    order_id BIGINT,
-    course_id VARCHAR(255),
-    PRIMARY KEY (order_id, course_id),
-    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
-    FOREIGN KEY (course_id) REFERENCES Course(course_id)
-);
-
-
 
 -- Tạo bảng Comment
 CREATE TABLE Comment (

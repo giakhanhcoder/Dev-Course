@@ -1,10 +1,8 @@
 package com.develop.devcourse.domain.security.model;
 
 import com.develop.devcourse.domain.lesson.model.Comment;
-import com.develop.devcourse.domain.lesson.model.Question;
 import com.develop.devcourse.domain.mentor.model.Mentor;
-import com.develop.devcourse.domain.payment.model.Orders;
-import com.develop.devcourse.domain.payment.model.TotalExpenses;
+import com.develop.devcourse.domain.payment.model.Order;
 import com.develop.devcourse.domain.student.model.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -76,10 +74,7 @@ public class User {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user")
-    private List<TotalExpenses> totalExpenses;
-
-    @OneToMany(mappedBy = "user")
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Mentor mentor;
