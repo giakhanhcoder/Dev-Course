@@ -33,22 +33,22 @@ public class WebSecurityConfig {
     private final AuthTokenFilter authTokenFilter;
 
 
-    @Bean
-    // public DaoAuthenticationProvider authenticationProvider(){ are the same
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        // provider userDetailsService for DaoAuthenticationProvider
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
+        @Bean
+        // public DaoAuthenticationProvider authenticationProvider(){ are the same
+        public AuthenticationProvider authenticationProvider(){
+            DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+            // provider userDetailsService for DaoAuthenticationProvider
+            authProvider.setUserDetailsService(userDetailsService);
+            authProvider.setPasswordEncoder(passwordEncoder());
+            return authProvider;
+        }
 
-    // AuthenticationManager will use UserDetailsService to get the user from the database
-    // also uses password encoder to encode and decode the password
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
+        // AuthenticationManager will use UserDetailsService to get the user from the database
+        // also uses password encoder to encode and decode the password
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+            return authConfig.getAuthenticationManager();
+        }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
