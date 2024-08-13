@@ -5,27 +5,27 @@ INSERT INTO Category (category_name, description) VALUES
 ('Language', 'Courses related to language learning');
 
 insert into mentor(user_id, degree, experience)
-values('9669a6a7-7e7e-4311-af05-f3e7b15ce7af', 'bachelor', 3);
+values('33b190cd-a853-41a6-9c31-667838f9ccb4', 'bachelor', 3);
 
 -- Dữ liệu cho các khóa học liên quan đến Công nghệ
 INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
-('course1', 'Learn Web Development', 'Web Development 101', 30, 'web_dev.jpg', 1, 1, 'Introduction to Web Development', 100, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
-('course2', 'Master Machine Learning', 'Machine Learning Mastery', 20, 'ml.jpg', 1, 1, 'Advanced Machine Learning Techniques', 150, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
+('course1', 'Learn Web Development', 'Web Development 101', 30, 'web_dev.jpg', 1, 1, 'Introduction to Web Development', 100, 4, '33b190cd-a853-41a6-9c31-667838f9ccb4'),
+('course2', 'Master Machine Learning', 'Machine Learning Mastery', 20, 'ml.jpg', 1, 1, 'Advanced Machine Learning Techniques', 150, 5, '33b190cd-a853-41a6-9c31-667838f9ccb4');
 
 -- Dữ liệu cho các khóa học liên quan đến Kinh doanh
 INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
-('course3', 'Entrepreneurship Basics', 'Start Your Own Business', 10, 'business.jpg', 1, 2, 'Foundations of Entrepreneurship', 120, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
-('course4', 'Financial Management', 'Mastering Finance', 15, 'finance.jpg', 1, 2, 'Advanced Financial Strategies', 180, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
+('course3', 'Entrepreneurship Basics', 'Start Your Own Business', 10, 'business.jpg', 1, 2, 'Foundations of Entrepreneurship', 120, 4, '33b190cd-a853-41a6-9c31-667838f9ccb4'),
+('course4', 'Financial Management', 'Mastering Finance', 15, 'finance.jpg', 1, 2, 'Advanced Financial Strategies', 180, 5, '33b190cd-a853-41a6-9c31-667838f9ccb4');
 
 -- Dữ liệu cho các khóa học liên quan đến Nghệ thuật
 INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
-('course5', 'Introduction to Drawing', 'Drawing Fundamentals', 22, 'drawing.jpg', 1, 3, 'Basic Drawing Techniques', 90, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
-('course6', 'Digital Painting Mastery', 'Advanced Digital Art', 24, 'digital_art.jpg', 1, 3, 'Mastering Digital Painting', 150, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
+('course5', 'Introduction to Drawing', 'Drawing Fundamentals', 22, 'drawing.jpg', 1, 3, 'Basic Drawing Techniques', 90, 4, '33b190cd-a853-41a6-9c31-667838f9ccb4'),
+('course6', 'Digital Painting Mastery', 'Advanced Digital Art', 24, 'digital_art.jpg', 1, 3, 'Mastering Digital Painting', 150, 5, '33b190cd-a853-41a6-9c31-667838f9ccb4');
 
 -- Dữ liệu cho các khóa học liên quan đến Ngôn ngữ
 INSERT INTO Course (course_id, course_des, course_name, duration, image_course_url, is_active, category_id, course_title, course_price, course_rate, user_id) VALUES
-('course7', 'Learn Spanish from scratch', 'Spanish for Beginners', 33, 'spanish.jpg', 1, 4, 'Basic Spanish Course', 80, 4, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af'),
-('course8', 'Advanced French Conversation', 'French Mastery', 27, 'french.jpg', 1, 4, 'Advanced French Speaking Skills', 120, 5, '9669a6a7-7e7e-4311-af05-f3e7b15ce7af');
+('course7', 'Learn Spanish from scratch', 'Spanish for Beginners', 33, 'spanish.jpg', 1, 4, 'Basic Spanish Course', 80, 4, '33b190cd-a853-41a6-9c31-667838f9ccb4'),
+('course8', 'Advanced French Conversation', 'French Mastery', 27, 'french.jpg', 1, 4, 'Advanced French Speaking Skills', 120, 5, '33b190cd-a853-41a6-9c31-667838f9ccb4');
 
 INSERT INTO Section(section_name, course_id) VALUES
 ('section 1', 'course1'),

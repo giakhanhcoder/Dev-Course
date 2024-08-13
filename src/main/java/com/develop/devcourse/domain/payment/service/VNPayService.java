@@ -33,16 +33,6 @@ public class VNPayService {
 
         Order order = orderService.createOrder(orderRequest);
 
-//        Orders orders = new Orders();
-//        orders.setUser(user);
-//        orders.setTotalPrice(total);
-//        orders.setCreatAt(new Date());
-//        orders.setReceivedAt(new Date());
-//        orders.setPaymentMethod("VNPAY");
-
-//        Orders o = ordersRepository.save(orders);
-
-        //Các bạn có thể tham khảo tài liệu hướng dẫn và điều chỉnh các tham số
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);
