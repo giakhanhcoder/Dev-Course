@@ -1,2 +1,2 @@
 # Dev-Course
-create a course that every developer can learn
+Dev-Course is an online learning platform designed for developers of all skill levels. Our goal is to create a website where every developer can enhance their skills and knowledge. The platform offers high-quality materials on topics ranging from basic programming to advanced development techniques, covering areas such as web development, systems programming, and more. Start your learning journey with Dev-Course today and take your development skills to the next level!
